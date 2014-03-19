@@ -80,7 +80,7 @@ module ImpressionistController
     # creates a statment hash that contains default values for creating an impression.
     def direct_create_statement(query_params={})
       query_params.reverse_merge!(
-        :impressionable_type => controller_name.singularize.camelize,
+        :impressionable_type => controller_name.singularize.titleize.constantize.base_class.to_s,
         :impressionable_id=> params[:id]
         )
       associative_create_statement(query_params)
